@@ -1,0 +1,20 @@
+<ion-navbar *navbar>
+  <button menuToggle>
+    <icon menu></icon>
+  </button>
+  <ion-title>Spielerliste</ion-title>
+</ion-navbar>
+
+<ion-content>
+  <ion-input floating-label>
+    <ion-label>Spielername</ion-label>
+    <input type="text" #playername>
+  </ion-input>
+  <button (click)="addUserToList(playername.value)">Spieler hinzufügen...</button>
+
+  <ion-list>
+    <ion-item *ngFor="#player of players">
+      {{player.name}}
+    </ion-item>
+  </ion-list>
+</ion-content>
