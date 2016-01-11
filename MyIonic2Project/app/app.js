@@ -1,5 +1,5 @@
 import {
-  App, IonicApp, Platform
+  App, IonicApp, Platform, Storage, SqlStorage
 }
 from 'ionic/ionic';
 
@@ -72,6 +72,13 @@ class MyApp {
       if (typeof StatusBar !== 'undefined') {
         StatusBar.styleDefault();
       }
+
+      this.storage = new Storage(SqlStorage,{ name: 'mackeData'});
+            this.storage.query('CREATE TABLE IF NOT EXISTS players (id TEXT PRIMARY KEY, name TEXT)').then((data) => {
+                console.log("TABLE CREATED -> " + JSON.stringify(data.res));
+            }, (error) => {
+                console.log("ERROR -> " + JSON.stringify(error.err));
+            });
     });
   }
 
